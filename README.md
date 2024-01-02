@@ -2,19 +2,37 @@
 
 Csv2Qif is used to convert CSV (Comma-separated values) file to QIF (Quicken Interchange Format) file.
 
-## Installation
+- [Csv2Qif](#csv2qif)
+  - [Usage](#usage)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+    - [Date Format](#date-format)
+  - [Development](#development)
+    - [Requirements](#requirements)
+    - [Building and Updating](#building-and-updating)
+    - [Executing](#executing)
+  - [License](#license)
 
-Install [Go](https://golang.org) and run the following command. Alternatively, download the released executable. 
-
-```
-go get github.com/awinarto/Csv2Qif
-Csv2Qif 
-```
 
 ## Usage
 
+### Installation
+
+Install [Go](https://golang.org).
+
+```shell
+winget install GoLang.Go
 ```
-Usage: Csv2Qif.exe [--config=value ...] csvFile qifFile [configFile]
+
+The following go command will install the latest binary release via `go install`
+
+```shell
+go install github.com/jmuldoon/csv2qif@latest
+csv2qif --help
+```
+
+```shell
+Usage: csv2qif.exe [--config=value ...] csvFile qifFile [configFile]
 
 csvFile      The CSV input file
 qifFile      The QIF output file
@@ -45,7 +63,7 @@ Config:
 
 The configuration can be specified in a file or passed as command line parameter. If config file is specified, it will overwrite configuration specified in the command line parameter. The config file is in JSON format. Set the value to null or remove the config to use the default value. Below is an example of the config file.
 
-```
+```json
 {
     "csvColumnAddress": null,
     "csvColumnAmount": 4,
@@ -70,7 +88,7 @@ The configuration can be specified in a file or passed as command line parameter
 
 The above config would convert the following CSV file
 
-```
+```csv
 Date,Description,Category,Amount
 16-Apr-20,Payment 1,Electricity,-$500.80
 8-Apr-20,Payment 2,Water,-$150.00
@@ -81,7 +99,7 @@ Date,Description,Category,Amount
 
 to QIF file below
 
-```
+```qif
 !Type:Bank
 D16/04/20
 T-500.80
@@ -110,7 +128,7 @@ LHomeware
 ^
 ```
 
-### Date format
+### Date Format
 
 The date in the QIF file could have different format compared to the CSV file. This is done by specifying both csvDateFormat and qifDateFormat. The following are supported.
 
@@ -125,15 +143,36 @@ The date in the QIF file could have different format compared to the CSV file. T
 | YY          | The 2 digits year                            |
 | YYYY        | The 4 digits year                            |
 
-## Compile
+## Development
 
-Csv2Qif is developed using [Go](https://golang.org) language. To build the executable, install Go and run the following commands.
+csv2qif is developed using [Go](https://golang.org) language and [Bazel](https://bazel.build/) as the build configuration and management source.
 
+### Requirements
+
+Running the following on a windows system will obtain the correct binaries. Please see the aforementioned links in the [Development](#development) section for other operating system installations.
+
+```shell
+winget install GoLang.Go Bazel.Bazel
 ```
-go get github.com/spf13/pflag
-go build Csv2Qif.go 
+
+### Building and Updating
+
+This following commands will ensure you have the build dependencies required for Bazel manage the build and deps
+
+```shell
+bazel run //:gazelle
+bazel run //:gazelle-update-repos
+bazel build //...
+```
+
+### Executing
+
+The executable binary of the build stage will end up in the output directory for you to run
+
+```shell
+./bazel-out/x64_windows-fastbuild/bin/csv2qif_/csv2qif.exe --help
 ```
 
 ## License
 
-Csv2Qif is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+csv2qif is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

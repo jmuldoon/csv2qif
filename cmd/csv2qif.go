@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"encoding/csv"
@@ -218,7 +218,7 @@ func formatAmount(str string) string {
 	return strings.Join(re.FindAllString(str, -1), "")
 }
 
-func main() {
+func Execute() {
 	csvHasHeader := flag.Bool("csvHasHeader", false, "Does the CSV file contain header?")
 	csvColumnDate := flag.Int("csvColumnDate", -1, "The column index (start with 0) for Date column (D)")
 	csvColumnAmount := flag.Int("csvColumnAmount", -1, "The column index (start with 0) for Amount column (T)")

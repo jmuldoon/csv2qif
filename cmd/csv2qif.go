@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -57,7 +56,7 @@ func (c *Config) init() {
 
 // Load configuration from json file
 func loadConfig(confFile string) (*Config, error) {
-	cnt, err := ioutil.ReadFile(confFile)
+	cnt, err := os.ReadFile(confFile)
 	if err != nil {
 		return nil, err
 	}

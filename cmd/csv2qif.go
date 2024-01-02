@@ -72,7 +72,7 @@ func loadConfig(confFile string) (*Config, error) {
 // Convert CSV to QIF
 func convertCsv2Qif(csvFile string, qifFile string, conf *Config) error {
 	if conf == nil {
-		return errors.New("Missing configuration")
+		return errors.New("missing configuration")
 	}
 	in, err := os.Open(csvFile)
 	if err != nil {

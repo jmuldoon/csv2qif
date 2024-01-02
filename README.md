@@ -13,7 +13,6 @@ Csv2Qif is used to convert CSV (Comma-separated values) file to QIF (Quicken Int
     - [Executing](#executing)
   - [License](#license)
 
-
 ## Usage
 
 ### Installation

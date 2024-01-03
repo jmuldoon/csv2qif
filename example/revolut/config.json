@@ -1,0 +1,20 @@
+{
+    "csvColumnAddress": null,
+    "csvColumnAmount": 6,
+    "csvColumnCategory": null,
+    "csvColumnCleared": 4,
+    "csvColumnDate": 3,
+    "csvColumnMemo": 5,
+    "csvColumnPayee": null,
+    "csvColumnRefNumber": null,
+    "csvColumnReimburseFlag": null,
+    "csvColumnSplitAmount": null,
+    "csvColumnSplitCategory": null,
+    "csvColumnSplitMemo": null,
+    "csvColumnSplitPercentage": null,
+    "csvDateFormat": "YYYY-MM-DD",
+    "csvHasHeader": true,
+    "csvReverseAmountSign": false,
+    "qifAccountType": "CASH",
+    "qifDateFormat": "DD/MM/YY"
+}
